@@ -1,0 +1,13 @@
+@import 'utils';
+
+.editor-template {
+    .panes {
+        height: calc(100vh - 4rem);
+        display:flex;
+        background: $oc-gray-1;
+        .pane{
+            display: flex;
+            flex:1;
+        }
+    }
+}
