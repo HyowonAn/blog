@@ -4,10 +4,26 @@
     .panes {
         height: calc(100vh - 4rem);
         display:flex;
-        background: $oc-gray-1;
+        position: relative;
         .pane{
             display: flex;
-            flex:1;
+            min-width: 0;
+            overflow: auto;
+        }
+        .separator{
+            width: 1rem;
+            height: 100%;
+            position : absolute;
+            transform: translate(-50%);
+            cursor: col-resize;
+        }
+        @include media("<medium") {
+            .editor{
+                flex: 1!important;
+            }
+            .preview, .separator{
+                display: none;
+            }
         }
     }
 }
