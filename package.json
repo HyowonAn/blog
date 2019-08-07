@@ -1,0 +1,16 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/uPrin/blog.git",
+  "author": "uPrin <503109@naver.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^4.1.1"
+  },
+  "scripts": {
+    "server": "cd blog-backend && yarn start",
+    "client": "cd blog-frontend && yarn start",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+  }
+}
