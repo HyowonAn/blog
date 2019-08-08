@@ -42,6 +42,11 @@ exports.write = async (ctx) => {
 
 exports.list = async (ctx) => {
     const page = parseInt(ctx.query.page || 1, 10);
+    const {tag} = ctx.query;
+
+    const query = tag ? {
+        tags: tag
+    } : {};
 
     if(page<1) {
         ctx.status = 400;
@@ -49,13 +54,13 @@ exports.list = async (ctx) => {
     }
 
     try {
-        const posts = await Post.find()
+        const posts = await Post.find(query)
             .sort({_id: -1})
             .limit(10)
             .skip((page-1) * 10)
             .lean()
             .exec();
-        const postCount = await Post.countDocuments().exec();
+        const postCount = await Post.countDocuments(query).exec();
         const limitBodyLength = post => ({
             ...post,
             body: post.body.length < 200 ? post.body : `${post.body.slice(0, 200)}...`
