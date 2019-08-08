@@ -9,8 +9,8 @@
     "concurrently": "^4.1.1"
   },
   "scripts": {
-    "server": "cd blog-backend && yarn start",
-    "client": "cd blog-frontend && yarn start",
+    "server": "cd blog-backend && yarn && yarn start",
+    "client": "cd blog-frontend && yarn && yarn start",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   }
 }
