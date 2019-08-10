@@ -11,6 +11,8 @@
   "scripts": {
     "server": "cd blog-backend && yarn && yarn start:dev",
     "client": "cd blog-frontend && yarn && yarn start",
-    "start:dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    "client:server": "cd blog-frontend && yarn && yarn build && yarn build:server",
+    "start:dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+    "start:ssr": "concurrently --kill-others-on-fail \"yarn client:server\" \"yarn server\" "
   }
 }

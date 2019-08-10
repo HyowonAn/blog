@@ -8,6 +8,11 @@ const api = require('./api');
 const session = require('koa-session');
 const app = new Koa();
 const router = new Router();
+const ssr = require('./ssr');
+const path = require('path');
+const serve = require('koa-static');
+
+const staticPath = path.join(__dirname, '../../blog-frontend/build');
 
 const {
     PORT: port = 4000,
@@ -16,6 +21,7 @@ const {
 } = process.env;
 
 mongoose.Promise = global.Promise;
+mongoose.set('useCreateIndex', true);
 mongoose.connect(mongoURI, { useNewUrlParser: true }).then(() => {
     console.log('connected to mongodb');
 }).catch((e) => {
@@ -31,8 +37,11 @@ app.use(session(sessionConfig, app));
 app.keys = [signKey];
 
 router.use('/api', api.routes());
+router.get('/',ssr);
 app.use(router.routes()).use(router.allowedMethods());
 
+app.use(serve(staticPath));
+app.use(ssr);
 app.listen(port, () => {
     console.log('listening to port', port);
 });

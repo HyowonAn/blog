@@ -1,10 +1,12 @@
 import React from 'react';
+import NotFound from 'components/common/NotFound';
 
-const NotFoundPage = () => {
+const NotFoundPage = ({history, staticContext}) => {
+    if(staticContext){
+        staticContext.isNotFound = true;
+    }
     return (
-        <div>
-            NotFound
-        </div>
+        <NotFound onGoBack={history.goBack}/>
     );
 };
 
