@@ -6,7 +6,8 @@ const bodyParser = require('koa-bodyparser');
 const mongoose = require('mongoose');
 const api = require('./api');
 const session = require('koa-session');
-
+const app = new Koa();
+const router = new Router();
 
 const {
     PORT: port = 4000,
@@ -21,19 +22,16 @@ mongoose.connect(mongoURI, { useNewUrlParser: true }).then(() => {
     console.error(e);
 });
 
-const app = new Koa();
-const router = new Router();
+
+app.use(bodyParser());
+const sessionConfig = {
+    maxAge: 86400000,
+}
+app.use(session(sessionConfig, app));
+app.keys = [signKey];
 
 router.use('/api', api.routes());
-app.use(bodyParser());
 app.use(router.routes()).use(router.allowedMethods());
-
-const sessionConfig = {
-    maxAge: 6000*60*24,
-}
-
-app.use(session(sessionConfig, app));
-app.keys = [signKey]
 
 app.listen(port, () => {
     console.log('listening to port', port);
