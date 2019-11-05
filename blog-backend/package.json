@@ -12,7 +12,7 @@
     "koa-router": "^7.4.0",
     "koa-session": "^5.12.2",
     "koa-static": "^5.0.0",
-    "mongoose": "^5.6.6"
+    "mongoose": "^5.7.5"
   },
   "devDependencies": {
     "cross-env": "^5.2.0",
