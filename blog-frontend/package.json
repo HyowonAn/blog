@@ -39,7 +39,7 @@
     "open-color": "^1.6.3",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
-    "prismjs": "^1.14.0",
+    "prismjs": "^1.23.0",
     "promise": "8.0.1",
     "query-string": "5",
     "raf": "3.4.0",
